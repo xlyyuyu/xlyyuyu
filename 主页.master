@@ -1,0 +1,129 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="主页.master.cs" Inherits="主页" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script> 
+    <title></title>
+    <link href="StyleSheet.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <style type="text/css">
+        #right {
+            width: 318px;
+            margin-left: 0px;
+        }
+        #logo {
+            width: 150px;
+            height: 100px;
+        }
+        #menu {
+            width: 316px;
+        }
+        .auto-style1 {
+            width: 108%;
+            margin-top: 41px;
+        }
+        #search {
+        }
+        #load {
+            width: 192px;
+            margin-top: 41px;
+        }
+        .auto-style3 {
+            width: 55%;
+            margin-top: 0px;
+        }
+        .auto-style4 {
+            height: 22px;
+        }
+        #menu2 {
+            width: 358px;
+        }
+        .auto-style6 {
+            width: 48px;
+        }
+        
+        .auto-style7 {
+            width: 47px;
+        }
+        
+        </style>
+         <script type="text/javascript">
+             $(function () {
+                 var iCountOfImage = 3; // 共三张图片 
+                 var iPreIndex = 0; // 上一次索引位置 
+                 $(".ppt-container ul.button-list li span").click(function () {
+                     var iIndex = $(this).attr("data-index");
+                     if (iIndex == iPreIndex) {
+                         return; // 点击了当前图片，不切换 
+                     }
+
+                     $(".ppt-container .image-list li[data-index=" + iIndex + "]").fadeIn(1500);
+                     $(".ppt-container .image-list li[data-index=" + iPreIndex + "]").fadeOut(1500);
+                     iPreIndex = iIndex;
+                     $(".ppt-container .button-list span").removeClass("selected");
+                     $(this).addClass("selected");
+                 });
+                 setInterval(function () { // 自动播放，每5秒触发一次单击事件，来播放幻灯片 
+                     var iNextIndex = (iPreIndex + 1) % iCountOfImage;
+                     $(".ppt-container ul.button-list li span[data-index=" + iNextIndex + "]").click();
+                 }, 3000);
+             });
+</script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+    <div id="header">
+        <div id="inner"><div id="logo" style="float: left">
+            </div><div id="menu" style="float: left; margin-top: 0px; margin-left: 20px;">
+           <table class="auto-style1" style="float: left; margin-left: 0px;  font-size:20px; font-weight:500; margin-bottom: 0px; color:white;">
+                <tr>
+                    <td class="auto-style4"><asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/网页/首页.aspx" ForeColor="White">首页</asp:HyperLink></td>
+                    <td class="auto-style4"><asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/纸艺/纸艺页.aspx" ForeColor="White">纸艺</asp:HyperLink></td>
+                    <td class="auto-style4"><asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/网页2/布艺页.aspx" ForeColor="White">布艺</asp:HyperLink></td>
+                    <td class="auto-style4"><asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/陶艺/陶艺页.aspx" ForeColor="White">陶艺</asp:HyperLink></td>
+                    <td class="auto-style4"><asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl="~/珠艺/珠艺.aspx" ForeColor="White">珠艺</asp:HyperLink></td>
+                    <td class="auto-style4"><asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl="~/其他/其他页.aspx" ForeColor="White">其他</asp:HyperLink></td>
+                </tr>
+            </table>
+            </div><div id="search" style="float: left; margin-left: 70px; width: 242px;">
+              <input type="text" placeholder="帖子/教程/商品"  style="margin-top: 45px; color: #C0C0C0; background-color: #4c4c4c;"/>
+                <asp:Button ID="Button1" runat="server" Text="搜索" BackColor="#f5f5f5" />
+            </div><div id="load" style="float: right; margin-right: 5px; margin-left: 0px;">
+                <table class="auto-style3" style="font-family:楷体;">
+                    <tr>
+                        <td style="font-size: 16px; font-family:微软雅黑;"><asp:HyperLink ID="HyperLink7" runat="server" NavigateUrl="~/网页/登录页.aspx" ForeColor="White">登录</asp:HyperLink> </td>
+                        <td style="font-size: 16px; font-family:微软雅黑;"><asp:HyperLink ID="HyperLink8" runat="server" NavigateUrl="~/网页/注册页.aspx" ForeColor="White">注册</asp:HyperLink></td>
+                    </tr>
+                </table>
+            </div></div></div>
+            <div id="kong"></div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+            <div id="kong0"></div>
+        <div id="foot">
+            <div id="footin" style="background-color: #393939">
+            <div id="left" style="float: left; height: 97px; margin-left: 27px; margin-top: 12px;"><p style="margin-bottom: 0px;height: 7px;">
+                <a href="#" style="color: #FF0000">关于我们</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#" style="color: #FF0000">联系我们</a>
+                &nbsp;&nbsp;&nbsp;<a href="#" style="color: #FF0000">合作方式</a>&nbsp;&nbsp;&nbsp; <a href="#" style="color: #FF0000">常见问题</a></p> 
+            <br />
+                <asp:HyperLink ID="HyperLink9" runat="server" NavigateUrl="~/网页/关于我们页面.aspx">关于我们</asp:HyperLink>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">联系我们</a>&nbsp;&nbsp;&nbsp; <a href="#">广告服务</a>&nbsp;&nbsp;&nbsp; <a href="#">发布作品</a> 
+            <br />
+            <a href="#">免责声明</a>&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">侵权处理</a>&nbsp;&nbsp;&nbsp; <a href="#">业务合作</a>&nbsp;&nbsp;&nbsp; <a href="#">网站导航</a><br />
+            <a href="#">版权声明</a>&nbsp;&nbsp; <br />
+&nbsp;&nbsp;</div>
+            <div id="right" style="float: right; font-size: 14px; height: 55px; color: #000000; margin-right: 77px;">手工制作教程，作品版权均属于发布者，
+本站不承担任何版权问题，如果我们侵犯了您的利益，请来信告知，我们会在第一时间处理！</div>
+        </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
+
